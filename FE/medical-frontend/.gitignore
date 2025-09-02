@@ -10,7 +10,10 @@
 
 # production
 /build
+<<<<<<< HEAD
 /dist
+=======
+>>>>>>> 492a118d5c789e30b3af398d347adb27f33a0ff4
 
 # misc
 .DS_Store
@@ -18,7 +21,10 @@
 .env.development.local
 .env.test.local
 .env.production.local
+<<<<<<< HEAD
 .idea
+=======
+>>>>>>> 492a118d5c789e30b3af398d347adb27f33a0ff4
 
 npm-debug.log*
 yarn-debug.log*

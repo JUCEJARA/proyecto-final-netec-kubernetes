@@ -8,5 +8,9 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
+<<<<<<< HEAD
       storage: 1Gi
   storageClassName: standard
+=======
+      storage: 1Gi
+>>>>>>> 492a118d5c789e30b3af398d347adb27f33a0ff4

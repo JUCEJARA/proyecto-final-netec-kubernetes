@@ -17,8 +17,13 @@ spec:
     spec:
       containers:
         - name: medical-frontend
+<<<<<<< HEAD
           image: jucejara/medical-frontend:latest
           imagePullPolicy: IfNotPresent
+=======
+          image: medical-frontend:latest
+          imagePullPolicy: Never
+>>>>>>> 492a118d5c789e30b3af398d347adb27f33a0ff4
           ports:
             - containerPort: 3000
           env:

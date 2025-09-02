@@ -1,10 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  # Versiones en conflicto de metadata.name:
-  # Opcion 1 (Local): medical-backend
-  # Opcion 2 (Remoto): contact-backend
+<<<<<<< HEAD
   name: medical-backend
+=======
+  name: contact-backend
+>>>>>>> 492a118d5c789e30b3af398d347adb27f33a0ff4
   namespace: medical-app
   labels:
     app: medical-backend
@@ -18,9 +19,11 @@ spec:
       labels:
         app: medical-backend
     spec:
+<<<<<<< HEAD
+      # 🔴 Quitamos nodeAffinity que bloqueaba el scheduling
       affinity:
-        # La afinidad de nodos (nodeAffinity) asegura que el pod se programe
-        # en un nodo con la etiqueta 'tier-backend=true'.
+=======
+      affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
@@ -28,8 +31,7 @@ spec:
                   - key: tier-backend
                     operator: In
                     values: ["true"]
-        # La anti-afinidad de pods (podAntiAffinity) evita que varias réplicas
-        # se ejecuten en el mismo nodo.
+>>>>>>> 492a118d5c789e30b3af398d347adb27f33a0ff4
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - weight: 50
@@ -42,33 +44,41 @@ spec:
                 topologyKey: "kubernetes.io/hostname"
       containers:
         - name: medical-backend
-          # Versiones en conflicto de la imagen:
-          # Opcion 1 (Local): jucejara/ms-medical-backend:latest (Docker Hub)
-          # Opcion 2 (Remoto): ms-medical-backend:latest (local)
+<<<<<<< HEAD
           image: jucejara/ms-medical-backend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           env:
-            # Variables de entorno en conflicto:
-            # Opcion 1 (Local): SPRING_DATASOURCE_URL, SPRING_DATASOURCE_USERNAME
-            # Opcion 2 (Remoto): MYSQL_PASSWORD
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://mysql.medical-app.svc.cluster.local:3306/db_medical
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
+=======
+          image: ms-medical-backend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MYSQL_PASSWORD
+>>>>>>> 492a118d5c789e30b3af398d347adb27f33a0ff4
               valueFrom:
                 secretKeyRef:
                   name: mysql-secret
                   key: mysql-root-password
+<<<<<<< HEAD
           readinessProbe:
             tcpSocket:
               port: 8080
-            # initialDelaySeconds en conflicto:
-            # Opcion 1 (Local): 40
-            # Opcion 2 (Remoto): 20
             initialDelaySeconds: 40
+=======
+          # Probes TCP porque tu app no expone /actuator/health
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 20
+>>>>>>> 492a118d5c789e30b3af398d347adb27f33a0ff4
             periodSeconds: 10
             timeoutSeconds: 3
             failureThreshold: 10

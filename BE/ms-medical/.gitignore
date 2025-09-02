@@ -35,9 +35,12 @@ out/
 
 ### VS Code ###
 .vscode/
+<<<<<<< HEAD
 # Archivos de bases de datos, logs y otros generados
 # ⚠️ Importante: añade esta sección
 data/mysql/
 *.log
 *.temp
 temp/
+=======
+>>>>>>> 492a118d5c789e30b3af398d347adb27f33a0ff4
